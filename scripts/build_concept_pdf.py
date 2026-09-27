@@ -87,7 +87,7 @@ def make_styles():
             leading=15, textColor=SLATE, spaceAfter=0, wordWrap="CJK",
         ),
         "code": ParagraphStyle(
-            "Code", parent=base["Code"], fontName="Courier", fontSize=7.5,
+            "Code", parent=base["Code"], fontName="NotoKR", fontSize=7.5,
             leading=10.5, textColor=colors.HexColor("#E2E8F0"), leftIndent=8,
             rightIndent=8, spaceBefore=5, spaceAfter=7,
         ),
@@ -145,6 +145,37 @@ def qa(number, question, answer, styles):
         ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
     ]))
     return KeepTogether([box, Spacer(1, 7)])
+
+
+def callout(title, text, styles, fill=SKY, stroke=BLUE):
+    content = [paragraph(title, styles["question"]), Spacer(1, 3), paragraph(text, styles["body"])]
+    box = Table([[content]], colWidths=[164 * mm])
+    box.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), fill),
+        ("BOX", (0, 0), (-1, -1), 0.7, stroke),
+        ("LEFTPADDING", (0, 0), (-1, -1), 10),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 10),
+        ("TOPPADDING", (0, 0), (-1, -1), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+    ]))
+    return box
+
+
+def data_table(headers, rows, widths, styles):
+    data = [[paragraph(cell, styles["table_header"]) for cell in headers]]
+    data.extend([[paragraph(cell, styles["small"]) for cell in row] for row in rows])
+    table = Table(data, colWidths=widths, repeatRows=1)
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), NAVY),
+        ("GRID", (0, 0), (-1, -1), 0.5, LINE),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, PAPER]),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+    ]))
+    return table
 
 
 class Diagram(Flowable):
@@ -300,7 +331,7 @@ def footer(canvas, doc):
     canvas.restoreState()
 
 
-def build():
+def build_legacy():
     register_fonts()
     styles = make_styles()
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
@@ -504,4 +535,6 @@ def build():
 
 
 if __name__ == "__main__":
+    from build_beginner_concept_pdf import build
+
     build()

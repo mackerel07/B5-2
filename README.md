@@ -31,8 +31,9 @@ python3 -m unittest discover -v
 - `min_heap.py`: `(expire_at, key)`를 저장하는 TTL 최소 힙
 - `mini_redis.py`: 명령어, 메모리 계산, LRU 제거, TTL 관리
 - `cli.py`: `mini-redis>` REPL과 입력 파싱
-- `CONCEPT_GUIDE.md`: 평가 문항 원문과 답변을 포함한 초보자용 개념서
-- `scripts/build_concept_pdf.py`: PDF를 다시 생성하는 스크립트
+- `CONCEPT_GUIDE.md`: 용어의 뜻과 사용 이유부터 설명하는 초보자용 개념서
+- `scripts/build_concept_pdf.py`: 초보자용 PDF를 다시 생성하는 실행 스크립트
+- `scripts/build_beginner_concept_pdf.py`: PDF 본문 구성
 
 ## 필수 요구사항 대응표
 
