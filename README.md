@@ -32,6 +32,8 @@ python3 -m unittest discover -v
 - `mini_redis.py`: 명령어, 메모리 계산, LRU 제거, TTL 관리
 - `cli.py`: `mini-redis>` REPL과 입력 파싱
 - `CONCEPT_GUIDE.md`: 평가 문항 원문과 답변을 포함한 초보자용 개념서
+- `output/pdf/B5-2_Mini_Redis_개념서.pdf`: 핵심 다이어그램을 포함한 9쪽 PDF 개념서
+- `scripts/build_concept_pdf.py`: PDF를 다시 생성하는 스크립트
 
 ## 필수 요구사항 대응표
 
@@ -48,4 +50,3 @@ python3 -m unittest discover -v
 | `dict`, `set`, `collections` 미사용 | 전체 구현 |
 
 메모리는 UTF-8로 인코딩한 키와 값의 바이트 수만 계산합니다. 자료구조 오버헤드는 과제 규칙대로 제외합니다.
-
